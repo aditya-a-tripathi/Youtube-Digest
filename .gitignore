@@ -1,0 +1,7 @@
+.env
+venv/
+digest.log
+__pycache__/
+seen_videos.json
+digest.md
+.DS_Store
