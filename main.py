@@ -145,7 +145,7 @@ for title, data in transcripts.items():
 
     response = claude.messages.create(
         model="claude-sonnet-5-5",
-        max_tokens=1536,
+        max_tokens=4096,
         messages=[
             {
                 "role": "user",
@@ -205,7 +205,8 @@ before SUMMARY or after the last bullet point."""
         ]
     )
 
-    summaries[title] = response.content[0].text
+    text_blocks = [b.text for b in response.content if b.type == "text"]
+    summaries[title] = "".join(text_blocks).strip()
     print(f"Summarized: {title}")
 
 print(f"\n{len(summaries)} summary/summaries complete")
